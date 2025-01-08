@@ -1,20 +1,76 @@
 // Walk-through of Jeo-Party! game, developed by Zak Sandler
 
 // User story:
-// Upon opening the app, I want to see a board with two categories labeled with headings, and two cards with dollar amounts ($250 and $400) below them. Next to that, I want to see a rectangle with the text "Show Answer" that will show each answer when clicked (card.addEventListener('click', showAnswer)). 
-// 
-// On the line below the cards,  I want to see a text box where each team can type their answer, as well as two rectangles, labeled "Team 1" and "Team 2", to represent the team podiums. The rectangles will hold the numberical value of how much money each team has earned so far (const moneyEarned = null; function(e), and separetly, (e.value)), and will update after each correct answer is submitted. Finally, I want to see a button labeled "Reset!".
+// I want to see rectangles with each dollar amount that will show each question when clicked (answerButton250.addEventListener('click', function) => the function will store the value on the card ($250 or $400), change innerText to show a question, and later, if the answer is right, add that stored value to the point total in the Team boxes.  
 
-// When I click on any of the category cards with their dollar amounts, I want the question to appear in the question box (function questionReveal(){ questionReveal[num],return question[num] ). If the team's answer = true, that team will win either $250 or $400, and get to pick the next card. If that team's answer = false, the other team will have a chance to type in their answer. If that team's answer is true, they will get the money and the chance to pick the next question. If it is false, the previous team will pick the next question. The money amounts will update (render) after each correct answer.
+//Every time someone clicks one of the money cards, I want a multiple choice list (4 options each) to appear using buttons. The buttons will correspond with items in an array, and the computer will pair the selected answer with the actual answer and evaluate if it is true. 
 
-// The process will continue until all 4 cards have been revealed and the teams have answered or failed to answer to the last card correctly. At that point, the money amounts will be tallied (by pushing the earnings from each question into an existing array of each team's earnings, tallied now with an add function) and the User can click "Reset!" to start the 2nd and final round (a render function)
-
-// The second round will run the same way, with 4 new questions. 
+// Each team's score will update by pushing the earnings from each question into the existing amount, tallied now with an forEach add function). The User can click "Reset!" to start the 2nd round (a render function)
 
 // At the end of the game, whoever has the most money will win, as indicated by text that will pop up at the top of the screen: "Team 1/2 wins!"
 
 // Finally, the user will click "Reset!" if they want to play again, which will reset the entire game board (render function).
 
+let team1Total
 
-// Beginning code:
-const answerButton = 'Answer'
+let questionArray250 = [{
+    question: 'What color is the sky?',
+    answer: 'blue',
+    possibleChoices: ['red', 'blue', 'green'],
+    amount: '$250'
+},
+{
+    question: 'Which of these is  a meat?',
+    answer: 'beef',
+    possibleChoices: ['lentils', 'tofu', 'beef'],
+    amount: '$250'
+}]
+
+let questionArray400 = [{
+    question: 'Who was the 16th President of the US?',
+    answer: 'Lincoln',
+    possibleChoices: ['Lincoln', 'Garfield', 'Trump'],
+    amount: '$400'
+}, {
+    question: 'What game is this called?',
+    answer: 'Jeo-Party!',
+    possibleChoices: ['Jeo-Party!', 'Backgammon', 'Cards'],
+    amount: '$400'
+}]
+
+const answerButton250 = document.querySelector('#dollars250');
+answerButton250.addEventListener('click', function (e) {
+    let displayedQuestion250 = questionArray250.pop();
+    e.target.innerText = displayedQuestion250.question
+    displayedQuestion250.possibleChoices.forEach((possibleChoice) => {
+        const possibleChoices250 = document.getElementById('possibleChoices250')
+        const possibleChoiceButton250 = document.createElement('li')
+        possibleChoiceButton250.textContent = possibleChoice;
+        possibleChoices250.appendChild(possibleChoiceButton250)
+    })
+})
+
+// element.style.red
+
+// forEach create button (displayedQuestion.possibleChoices) - use radio?
+// Place buttons in HTML code (appendChild)
+
+const answerButton400 = document.querySelector('#dollars400');
+answerButton400.addEventListener('click', function (e) {
+    let displayedQuestion400 = questionArray400.pop()
+    console.log(displayedQuestion400.question)
+    e.target.innerText = displayedQuestion400.question
+    displayedQuestion400.possibleChoices.forEach((possibleChoice) => {
+        const possibleChoices400 = document.getElementById('possibleChoices400')
+        const possibleChoiceButton400 = document.createElement('li')
+        possibleChoiceButton400.textContent = possibleChoice;
+        possibleChoices400.appendChild(possibleChoiceButton400)
+    })
+})
+
+// For later: use render() to reset board
+// const resetButton = document.querySelector('button')
+// resetButton.addEventListener('click', function (reset)) 
+// const fruits = ['apple', 'banana', 'cherry'];
+// fruits.forEach(function(fruit, index, array) {
+//     console.log(`Fruit: ${fruit}`);
