@@ -11,62 +11,114 @@
 
 // Finally, the user will click "Reset!" if they want to play again, which will reset the entire game board (render function).
 
+let category1 = 'Food'
+let category2 = 'People'
 let currentTeam1Total = 0
 let currentTeam2Total = 0
-let newTeam1Total250 = currentTeam1Total + 250
-let newTeam2Total250 = currentTeam2Total + 250
-let newTeam1Total400 = currentTeam1Total + 400
-let newTeam2Total400 = currentTeam1Total + 400
+let currentTeamTurn = 'Team 1'
+let whoseTurn = document.querySelector('.whoseTurn');
+let currentQuestion = null
+let correctAnswerTeam1250 = document.querySelector('#correctAnswerTeam1250')
+let correctAnswerTeam2250 = document.querySelector('#correctAnswerTeam2250')
+const possibleChoiceButtons250 = document.querySelector('#possibleChoices250')
+const possibleChoiceButtons400 = document.querySelector('#possibleChoices400')
+const answerButton250 = document.querySelector('#dollars250');
+const answerButton400 = document.querySelector('#dollars400');
+const resetButton = document.querySelector('#reset')
 
 let questionArray250 = [{
-    question: 'What color is the sky?',
-    answer: 'blue',
-    possibleChoices: ['red', 'blue', 'green'],
+    question: 'What country first made Ramen?',
+    answer: 'Japan',
+    possibleChoices: ['Japan', 'China', 'Korea'],
     amount: 250
 },
 {
-    question: 'Which of these is  a meat?',
-    answer: 'beef',
-    possibleChoices: ['lentils', 'tofu', 'beef'],
+    question: 'What is the Thai name for "Drunken Noodles"?',
+    answer: 'Pad Kee Mao',
+    possibleChoices: ['Pad Kee Mao', 'Pad Krapow', 'Pad See Ew'],
     amount: 250
+},
+{
+    question: 'What country does Broccoli originate from?',
+    answer: 'Italy',
+    possibleChoices: ['Italy', 'Turkey', 'China'],
+    amount: 250
+},
+{
+    question: 'What is a key ingredient in Chinese 5-spice?',
+    answer: 'Star-anise',
+    possibleChoices: ['Star-anise', 'Soy Sauce', 'Sesame Oil'],
+    amount: 250
+
 }]
 
 let questionArray400 = [{
-    question: 'Who was the 16th President of the US?',
-    answer: 'Lincoln',
-    possibleChoices: ['Lincoln', 'Garfield', 'Trump'],
+    question: 'Who got 2nd place in Season 2 of American Idol?',
+    answer: 'Clay Aiken',
+    possibleChoices: ['Clay Aiken', 'Ruben Studdard', 'Kelly Clarkson'],
     amount: 400
 }, {
-    question: 'What game is this called?',
-    answer: 'Jeo-Party!',
-    possibleChoices: ['Jeo-Party!', 'Backgammon', 'Cards'],
+    question: 'Who was the 16th President of the US?',
+    answer: 'Abraham Lincoln',
+    possibleChoices: ['Abraham Lincoln', 'James Garfield', 'Ulysses Grant'],
+    amount: 400
+}, {
+    question: 'Which of these pop stars is openly bipolar?',
+    answer: 'Mariah Carey',
+    possibleChoices: ['Mariah Carey', 'Ariana Grande', 'Usher'],
+    amount: 400
+}, {
+    question: "Who won the silver medal at Women's Gymnastics in 2024?",
+    answer: 'Rebeca Andrade',
+    possibleChoices: ['Redeca Andrade', 'Simone Biles', 'Wendy Bruce'],
     amount: 400
 }]
+    
 
-let currentTeamTurn = 'Team 1'
-let whoseTurn = document.querySelector('.whoseTurn');
-
-let currentQuestion = null
-const possibleChoiceButtons250 = document.querySelector('#possibleChoices250')
-const answerButton250 = document.querySelector('#dollars250');
 answerButton250.addEventListener('click', function (e) {
-    let correctAnswerTeam1250 = document.querySelector('#correctAnswerTeam1250')
-    let correctAnswerTeam1400 = document.querySelector('#correctAnswerTeam1400')
     currentQuestion = questionArray250.pop();
     e.target.innerText = currentQuestion.question
     possibleChoiceButtons250.innerHTML = ''
+    possibleChoiceButtons400.innerHTML = ''
     currentQuestion.possibleChoices.forEach((possibleChoice) => {
         const possibleChoiceButton250 = document.createElement('li')
         possibleChoiceButton250.setAttribute('class', 'choice250')
         possibleChoiceButton250.textContent = possibleChoice;
         possibleChoices250.appendChild(possibleChoiceButton250)
+        console.log(currentQuestion)
     })
 })
-const possibleChoiceButtons400 = document.querySelector('#possibleChoices400')
-const answerButton400 = document.querySelector('#dollars400');
+
+possibleChoiceButtons250.addEventListener('click', function (e) {
+    if (currentTeamTurn === 'Team 1') {
+        if (e.target.innerText === currentQuestion.answer) {
+            e.target.style.backgroundColor = 'green'
+            currentTeam1Total = currentTeam1Total + currentQuestion.amount
+            correctAnswerTeam1250.innerText = currentTeam1Total
+        } else {
+            e.target.style.backgroundColor = 'red'
+            currentTeamTurn = 'Team 2'
+            whoseTurn.innerText = "It is Team 2's Turn!"
+            console.log('wrong answer')
+        }
+    }
+    else {
+        if (e.target.innerText === currentQuestion.answer) {
+            e.target.style.backgroundColor = 'green'
+            currentTeam2Total = currentTeam2Total + currentQuestion.amount
+            correctAnswerTeam2250.innerText = currentTeam2Total
+        } else if (e.target.innerText !== currentQuestion.answer) {
+            e.target.style.backgroundColor = 'red'
+            currentTeamTurn = 'Team 1'
+            whoseTurn.innerText = "It is Team 1's Turn!"
+        }
+    }
+})
+
 answerButton400.addEventListener('click', function (e) {
     currentQuestion = questionArray400.pop();
     e.target.innerText = currentQuestion.question
+    possibleChoiceButtons250.innerHTML = ''
     possibleChoiceButtons400.innerHTML = ''
     currentQuestion.possibleChoices.forEach((possibleChoice) => {
         const possibleChoiceButton400 = document.createElement('li')
@@ -76,75 +128,51 @@ answerButton400.addEventListener('click', function (e) {
     })
 })
 
-let incorrectAnswer250 = (correctAnswerTeam1250 === false)
-possibleChoiceButtons250.addEventListener('click', function (e) {
-    if (currentTeamTurn === 'Team 1') {
-        currentTeamTurn = 'Team 2'
-    } else if (currentTeamTurn === 'Team 2') {
-        currentTeamTurn = 'Team 1'
-    }
-    console.log(currentTeamTurn)
-    if (currentTeamTurn === 'Team 1') {
-        whoseTurn.innerText = "It is Team 1's Turn!"
-    } else if (currentTeamTurn !== 'Team 1') {
-        whoseTurn.innerText = "It is Team 2's Turn!"
-    }
-    if (e.target.innerText === currentQuestion.answer) {
-        e.target.style.backgroundColor = 'green'
-        currentTeam1Total = newTeam1Total250
-        correctAnswerTeam1250.innerText = currentTeam1Total
-    } else if (e.target.innerText !== currentQuestion.answer) {
-        e.target.style.backgroundColor = 'red'
-        correctAnswerTeam1250.innerText = currentTeam1Total
-    }
-})
-let incorrectAnswer400 = (correctAnswerTeam1400 === false)
 possibleChoiceButtons400.addEventListener('click', function (e) {
+
     if (currentTeamTurn === 'Team 1') {
-        currentTeamTurn = 'Team 2'
-    } else if (currentTeamTurn === 'Team 2') {
-        currentTeamTurn = 'Team 1'
-    }
-    console.log(currentTeamTurn)
-    if (currentTeamTurn === 'Team 1') {
-        whoseTurn.innerText = "It is Team 1's Turn!"
-    } else if (currentTeamTurn !== 'Team 1') {
-        whoseTurn.innerText = "It is Team 2's Turn!"
-    }
-    if (e.target.innerText === currentQuestion.answer) {
-        e.target.style.backgroundColor = 'green'
-        currentTeam1Total = newTeam1Total250
-        correctAnswerTeam1400.innerText = currentTeam1Total
-    } else if (e.target.innerText !== currentQuestion.answer) {
-        e.target.style.backgroundColor = 'red'
-        correctAnswerTeam1400.innerText = currentTeam1Total
+        if (e.target.innerText === currentQuestion.answer) {
+            e.target.style.backgroundColor = 'green'
+            currentTeam1Total = currentTeam1Total + currentQuestion.amount
+            correctAnswerTeam1250.innerText = currentTeam1Total
+            console.log(currentTeam1Total)
+        } else {
+            e.target.style.backgroundColor = 'red'
+            currentTeamTurn = 'Team 2'
+            whoseTurn.innerText = "It is Team 2's Turn!"
+        }
+
+        console.log(currentTeam1Total)
+    } else {
+        if (e.target.innerText === currentQuestion.answer) {
+            e.target.style.backgroundColor = 'green'
+            currentTeam2Total = currentTeam2Total + currentQuestion.amount
+            correctAnswerTeam2250.innerText = currentTeam2Total
+        } else {
+            e.target.style.backgroundColor = 'red'
+            currentTeamTurn = 'Team 1'
+            whoseTurn.innerText = "It is Team 1's Turn!"
+        }
     }
 })
 
-const resetButton = document.querySelector('#reset')
 resetButton.addEventListener('click', function (e) {
     answerButton250.innerText = '$250'
+    answerButton400.innerText = '$400'
     correctAnswerTeam1250.innerText = 'Team 1 Total'
-    correctAnswerTeam1400.innerText = 'Team 1 Total'
+    correctAnswerTeam2250.innerText = 'Team 2 Total'
+    possibleChoiceButtons250.innerHTML = ''
     possibleChoiceButtons400.innerHTML = ''
-    possibleChoiceButtons400.innerHTML = ''
-    function resetButton(button) {
-        document.getElementById('#dollars250').disabled = false
-        document.getElementById('#dollars400').disabled = false
-    }
+    whoseTurn.innerText = "It is Team 1's Turn!"
+    // function resetButton(button) {
+    //     document.getElementById('#dollars250').disabled = false
+    //     document.getElementById('#dollars400').disabled = false
+    // }
+    // resetButton()
 })
 
-answerButton400.addEventListener('click', function (e) {
-    let displayedQuestion400 = questionArray400.pop()
-    console.log(displayedQuestion400.question)
-    e.target.innerText = displayedQuestion400.question
-    displayedQuestion400.possibleChoices.forEach((possibleChoice) => {
-        const possibleChoices400 = document.getElementById('possibleChoices400')
-        const possibleChoiceButton400 = document.createElement('li')
-        possibleChoiceButton400.textContent = possibleChoice;
-        possibleChoices400.appendChild(possibleChoiceButton400)
-    })
-})
+
+
 
 // For later: use render() to reset board
 // const resetButton = document.querySelector('button')
