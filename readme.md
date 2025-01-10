@@ -18,4 +18,4 @@ CSS
 Javascript
 
 #### PLANNED FUTURE ENHANCEMENTS
-I plan to reveal the right answer when a wrong answer is picked, and to make it impossible to choose a second possible answer. I plan to create categories, as in Jeopardy. I also plan to make the clicking a little more intutive, so that the player always clicks a box labeled "$250" or "$400", rather than having to click the question box. Finally, I plan to add 2 more dollar amount options ($750 and $1000), as well as adding 3 more questions per dollar amount, and 4 possible choices for each (instead of 3).
+I plan to reveal the right answer when a wrong answer is picked, and to make it impossible to choose a second possible answer. I plan to create categories, as in Jeopardy. I also plan to make the clicking a little more intutive, so that the player always clicks a box labeled "$250" or "$400", rather than having to click the question box. I plan to order the questions based on level of difficulty. Finally, I plan to add 2 more dollar amount options ($750 and $1000), as well as adding 3 more questions per dollar amount, and 4 possible choices for each (instead of 3).

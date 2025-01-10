@@ -59,12 +59,12 @@ let questionArray400 = [{
 }, {
     question: 'Who got 2nd place in Season 2 of American Idol?',
     answer: 'Clay Aiken',
-    possibleChoices: ['Clay Aiken', 'Ruben Studdard', 'Kelly Clarkson'],
+    possibleChoices: ['Kelly Clarkson', 'Ruben Studdard', 'Clay Aiken'],
     amount: 400
 }, {
     question: 'Who was the 16th President of the US?',
     answer: 'Abraham Lincoln',
-    possibleChoices: ['Abraham Lincoln', 'James Garfield', 'Ulysses Grant'],
+    possibleChoices: ['Ulysses Grant', 'Abraham Lincoln', 'Grover Cleveland'],
     amount: 400
 }, {
     question: "Who won the silver medal at Women's Gymnastics in 2024?",
@@ -84,7 +84,6 @@ answerButton250.addEventListener('click', function (e) {
         possibleChoiceButton250.setAttribute('class', 'choice250')
         possibleChoiceButton250.textContent = possibleChoice;
         possibleChoices250.appendChild(possibleChoiceButton250)
-        console.log(currentQuestion)
     })
 })
 
@@ -98,7 +97,6 @@ possibleChoiceButtons250.addEventListener('click', function (e) {
             e.target.style.backgroundColor = 'red'
             currentTeamTurn = 'Team 2'
             whoseTurn.innerText = "It is Team 2's Turn!"
-            console.log('wrong answer')
         }
     }
     else {
@@ -106,7 +104,7 @@ possibleChoiceButtons250.addEventListener('click', function (e) {
             e.target.style.backgroundColor = 'green'
             currentTeam2Total = currentTeam2Total + currentQuestion.amount
             correctAnswerTeam2250.innerText = currentTeam2Total
-        } else if (e.target.innerText !== currentQuestion.answer) {
+        } else {
             e.target.style.backgroundColor = 'red'
             currentTeamTurn = 'Team 1'
             whoseTurn.innerText = "It is Team 1's Turn!"
@@ -163,16 +161,4 @@ resetButton.addEventListener('click', function (e) {
     possibleChoiceButtons250.innerHTML = ''
     possibleChoiceButtons400.innerHTML = ''
     whoseTurn.innerText = "It is Team 1's Turn!"
-    // function resetButton(button) {
-    //     document.getElementById('#dollars250').disabled = false
-    //     document.getElementById('#dollars400').disabled = false
-    // }
-    // resetButton()
 })
-
-
-
-
-// For later: use render() to reset board
-// const resetButton = document.querySelector('button')
-// resetButton.addEventListener('click', function (reset)) 
