@@ -1,36 +1,45 @@
 h1 {
     border-style:solid;
     text-align: center;
+    color: black ;
+    background-color: darkturquoise;
 }
 
-.category {
+h4 {
     display: inline-grid;
-    grid-template-columns: 100px auto;
+    border-style: solid;
+    border-width: 4px;
     text-align: center;
-    gap: 50px 60px
+    padding: 10px;
+    margin: 10px;
+    color: orangered;
+    border-color: black;
 }
 
-.answer {
-    display: inline-grid;
-    grid-template-columns: 100px auto;
-    text-align: center;
-    gap: 50px 60px
-}
-
-.divs {
+.the-game {
     display: flex;
     flex-direction: column;
-
 }
 
-.teams {
-    display: flex;
-    justify-content: flex-start;
-    margin-top: 50px;
-    margin-left: 35px;
-    gap: 50px 108px
+.choiceList {
+    height: 150px;
 }
 
+.total-score {
+    display: inline-grid;
+    width: 100px;
+    margin:20px 16px 10px;
+    border: 2px solid black;
+}
+
+#dollars250 {
+    color: black;
+    background-color: lightblue;
+}
+#dollars400 {
+    color: black;
+    background-color: greenyellow;
+}
 
 .empty-box {
     display: inline-grid;
@@ -40,10 +49,27 @@ h1 {
     gap: 50px 60px;
 }
 
+#correctAnswerTeam1250 {
+    color: black;
+    background-color: greenyellow;
+}
+
+#correctAnswerTeam2250 {
+    color: black;
+    background-color: lightblue;
+}
+
 button {
-    position: relative;
-    top: 300px; 
-    bottom: 15px;
-    margin-left: 226px;
+    /* position: relative;
+    top: 100px; 
+    bottom: 15px; */
+    margin-left: 40px;
     padding: 15px;
+    border: 2px solid black;
+}
+
+#reset {
+    background-color: red;
+    color: white;
+    border-width: 4px;
 }
