@@ -29,7 +29,13 @@ const resetButton = document.querySelector('#reset')
 let questionArray250 = [{
     question: 'What country first made Ramen?',
     answer: 'Japan',
-    possibleChoices: ['Japan', 'China', 'Korea'],
+    possibleChoices: ['China', 'Japan', 'Korea'],
+    amount: 250
+},
+{
+    question: 'What is a key ingredient in Chinese 5-spice?',
+    answer: 'Star-anise',
+    possibleChoices: ['Star-anise', 'Soy Sauce', 'Sesame Oil'],
     amount: 250
 },
 {
@@ -41,18 +47,16 @@ let questionArray250 = [{
 {
     question: 'What country does Broccoli originate from?',
     answer: 'Italy',
-    possibleChoices: ['Italy', 'Turkey', 'China'],
+    possibleChoices: ['China', 'Turkey', 'Italy'],
     amount: 250
-},
-{
-    question: 'What is a key ingredient in Chinese 5-spice?',
-    answer: 'Star-anise',
-    possibleChoices: ['Star-anise', 'Soy Sauce', 'Sesame Oil'],
-    amount: 250
-
 }]
 
 let questionArray400 = [{
+    question: 'Which of these pop stars is openly bipolar?',
+    answer: 'Mariah Carey',
+    possibleChoices: ['Mariah Carey', 'Ariana Grande', 'Usher'],
+    amount: 400
+}, {
     question: 'Who got 2nd place in Season 2 of American Idol?',
     answer: 'Clay Aiken',
     possibleChoices: ['Clay Aiken', 'Ruben Studdard', 'Kelly Clarkson'],
@@ -63,17 +67,12 @@ let questionArray400 = [{
     possibleChoices: ['Abraham Lincoln', 'James Garfield', 'Ulysses Grant'],
     amount: 400
 }, {
-    question: 'Which of these pop stars is openly bipolar?',
-    answer: 'Mariah Carey',
-    possibleChoices: ['Mariah Carey', 'Ariana Grande', 'Usher'],
-    amount: 400
-}, {
     question: "Who won the silver medal at Women's Gymnastics in 2024?",
     answer: 'Rebeca Andrade',
-    possibleChoices: ['Redeca Andrade', 'Simone Biles', 'Wendy Bruce'],
+    possibleChoices: ['Rebeca Andrade', 'Simone Biles', 'Wendy Bruce'],
     amount: 400
 }]
-    
+
 
 answerButton250.addEventListener('click', function (e) {
     currentQuestion = questionArray250.pop();
